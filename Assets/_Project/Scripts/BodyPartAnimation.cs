@@ -7,7 +7,7 @@ using UnityEngine;
 public class BodyPartAnimation : MonoBehaviour
 {
     [SerializeField] private BodyPartData _bodyPartData;
-    
+
     private SpriteRenderer _spriteRenderer;
     private Sprite[] _currentAnimationSprites;
     private PlayerMovement _playerMovement;
@@ -28,6 +28,7 @@ public class BodyPartAnimation : MonoBehaviour
     public void ChangeSpriteColor(Color newColor)
     {
         newColor.a = 1;
+        if (_spriteRenderer == null) _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteRenderer.color = newColor;
     }
 

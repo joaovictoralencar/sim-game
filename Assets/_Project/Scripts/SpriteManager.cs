@@ -46,7 +46,21 @@ public class SpriteManager : MonoBehaviour
 
     private void OnValidate()
     {
-        OnChangeSkinTone?.Invoke(_skinTone);
-        OnChangeHairColor?.Invoke(_hairColor);
+        UpdateSkinTone();
+    }
+
+
+    void UpdateSkinTone()
+    {
+        if (_head)
+            _head.ChangeSpriteColor(_skinTone);
+        if (_torso)
+            _torso.ChangeSpriteColor(_skinTone);
+        if (_hands)
+            _hands.ChangeSpriteColor(_skinTone);
+        if (_legs)
+            _legs.ChangeSpriteColor(_skinTone);
+        if (_hair)
+            _hair.ChangeSpriteColor(_hairColor);
     }
 }
