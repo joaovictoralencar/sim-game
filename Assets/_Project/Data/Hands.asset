@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5525f7cd17d961d4c96ff5f2b9d1e07b, type: 3}
+  m_Name: Hands
+  m_EditorClassIdentifier: 
+  IdleFront: {fileID: -1217992506, guid: 96bb40e07d603c94394ffe39e31e8eca, type: 3}
+  IdleBack: {fileID: 1420957943, guid: 96bb40e07d603c94394ffe39e31e8eca, type: 3}
+  IdleSide: {fileID: 1535362353, guid: 96bb40e07d603c94394ffe39e31e8eca, type: 3}
+  FrontAnimationSprites:
+  - {fileID: -1996234438, guid: 96bb40e07d603c94394ffe39e31e8eca, type: 3}
+  - {fileID: -144785344, guid: 96bb40e07d603c94394ffe39e31e8eca, type: 3}
+  - {fileID: -1217992506, guid: 96bb40e07d603c94394ffe39e31e8eca, type: 3}
+  - {fileID: -169863642, guid: 96bb40e07d603c94394ffe39e31e8eca, type: 3}
+  - {fileID: -800938015, guid: 96bb40e07d603c94394ffe39e31e8eca, type: 3}
+  DisabledOnFront: 0
+  BackAnimationSprites:
+  - {fileID: -1967646115, guid: 96bb40e07d603c94394ffe39e31e8eca, type: 3}
+  - {fileID: 390167106, guid: 96bb40e07d603c94394ffe39e31e8eca, type: 3}
+  - {fileID: 1420957943, guid: 96bb40e07d603c94394ffe39e31e8eca, type: 3}
+  - {fileID: -467754290, guid: 96bb40e07d603c94394ffe39e31e8eca, type: 3}
+  - {fileID: -556520686, guid: 96bb40e07d603c94394ffe39e31e8eca, type: 3}
+  DisabledOnBack: 0
+  SideAnimationSprites:
+  - {fileID: 206238643, guid: 96bb40e07d603c94394ffe39e31e8eca, type: 3}
+  - {fileID: -205807575, guid: 96bb40e07d603c94394ffe39e31e8eca, type: 3}
+  - {fileID: 1535362353, guid: 96bb40e07d603c94394ffe39e31e8eca, type: 3}
+  - {fileID: 863490253, guid: 96bb40e07d603c94394ffe39e31e8eca, type: 3}
+  - {fileID: -439423799, guid: 96bb40e07d603c94394ffe39e31e8eca, type: 3}
+  DisabledOnSides: 0
