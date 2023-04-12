@@ -59,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _moveYTween.Restart();
             _moveYTween.Kill();
+            _moveYTween = null;
         }
     }
 
