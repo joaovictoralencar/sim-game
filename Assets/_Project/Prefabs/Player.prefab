@@ -229,9 +229,8 @@ MonoBehaviour:
   _inventorySize: 30
   _inventoryHolder: {fileID: 0}
   _inventorySlotPrefab: {fileID: 6886631029559987454, guid: 6ea9de73534be3f44b8348f2df2d14f5, type: 3}
-  itemToAdd:
-    Amount: 10
-    ItemData: {fileID: 11400000, guid: d61154327e550314fbba09fb48caea6a, type: 2}
+  _previewHolder: {fileID: 0}
+  itemsToAdd: []
 --- !u!1 &1119137018917783866
 GameObject:
   m_ObjectHideFlags: 0

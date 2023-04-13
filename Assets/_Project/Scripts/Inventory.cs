@@ -8,16 +8,18 @@ public class Inventory : MonoBehaviour
     [SerializeField] private int _inventorySize = 30;
     [SerializeField] private RectTransform _inventoryHolder;
     [SerializeField] private InventorySlot _inventorySlotPrefab;
-    private ItemData[] _inventoryItems;
+    [SerializeField] private RectTransform _previewHolder;
     private InventorySlot[] _inventorySlotItems;
     private int _itemsInInventory;
 
     private void Awake()
     {
-        //Initialize inventory array
-        _inventoryItems = new ItemData[_inventorySize];
-
         InitializeSlots();
+    }
+
+    private void Start()
+    {
+        AddItemPackQA();
     }
 
     private void InitializeSlots()
@@ -34,6 +36,8 @@ public class Inventory : MonoBehaviour
         {
             InventorySlot slot = Instantiate(_inventorySlotPrefab, _inventoryHolder);
             slot.Initialize(i);
+            slot.OnBeginDragItem.AddListener(OnBeginDragItem);
+            slot.OnEndDragItem.AddListener(OnDropItemInSlot);
             _inventorySlotItems[i] = slot;
         }
     }
@@ -71,6 +75,29 @@ public class Inventory : MonoBehaviour
         _itemsInInventory++;
     }
 
+    private void OnDropItemInSlot(InventorySlot slot, ItemData itemData, int amount)
+    {
+        //empty slot
+        if (slot.ItemData == null)
+        {
+            slot.ChangeItem(itemData, amount);
+        }
+        else if (slot.ItemData.ItemName == itemData.ItemName)
+        {
+            //stack
+            slot.ChangeItem(itemData, amount + slot.ItemAmount);
+        }
+        else
+        {
+            //occupied slot
+        }
+    }
+
+    private void OnBeginDragItem(GameObject itemPreview)
+    {
+        itemPreview.transform.SetParent(_previewHolder);
+    }
+
     InventorySlot GetFirstEmptySlot()
     {
         foreach (var inventorySlot in _inventorySlotItems)
@@ -99,13 +126,16 @@ public class Inventory : MonoBehaviour
         AddItem(itemPack.ItemData, false, itemPack.Amount);
     }
 
-    [Space(10), Header("QA")]
-    public ItemPack itemToAdd;
 
-    [ContextMenu("AddItem")] 
+    [Space(10), Header("QA")] public ItemPack[] itemsToAdd;
+
+    [ContextMenu("AddItem")]
     void AddItemPackQA()
     {
-        AddItemPack(itemToAdd);
+        foreach (var itemPack in itemsToAdd)
+        {
+            AddItemPack(itemPack);
+        }
     }
 }
 

@@ -2621,9 +2621,45 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5667372445713004248, guid: f097430cf00de9b44912092cf68983f8, type: 3}
+      propertyPath: _inventorySize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667372445713004248, guid: f097430cf00de9b44912092cf68983f8, type: 3}
+      propertyPath: _previewHolder
+      value: 
+      objectReference: {fileID: 1310610759}
+    - target: {fileID: 5667372445713004248, guid: f097430cf00de9b44912092cf68983f8, type: 3}
       propertyPath: _inventoryHolder
       value: 
       objectReference: {fileID: 1046937365}
+    - target: {fileID: 5667372445713004248, guid: f097430cf00de9b44912092cf68983f8, type: 3}
+      propertyPath: itemsToAdd.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667372445713004248, guid: f097430cf00de9b44912092cf68983f8, type: 3}
+      propertyPath: itemsToAdd.Array.data[0].Amount
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667372445713004248, guid: f097430cf00de9b44912092cf68983f8, type: 3}
+      propertyPath: itemsToAdd.Array.data[1].Amount
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667372445713004248, guid: f097430cf00de9b44912092cf68983f8, type: 3}
+      propertyPath: itemsToAdd.Array.data[2].Amount
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667372445713004248, guid: f097430cf00de9b44912092cf68983f8, type: 3}
+      propertyPath: itemsToAdd.Array.data[0].ItemData
+      value: 
+      objectReference: {fileID: 11400000, guid: b45cffd328e96124f812a05ac9311618, type: 2}
+    - target: {fileID: 5667372445713004248, guid: f097430cf00de9b44912092cf68983f8, type: 3}
+      propertyPath: itemsToAdd.Array.data[1].ItemData
+      value: 
+      objectReference: {fileID: 11400000, guid: d61154327e550314fbba09fb48caea6a, type: 2}
+    - target: {fileID: 5667372445713004248, guid: f097430cf00de9b44912092cf68983f8, type: 3}
+      propertyPath: itemsToAdd.Array.data[2].ItemData
+      value: 
+      objectReference: {fileID: 11400000, guid: d61154327e550314fbba09fb48caea6a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f097430cf00de9b44912092cf68983f8, type: 3}
 --- !u!4 &2077620833 stripped
