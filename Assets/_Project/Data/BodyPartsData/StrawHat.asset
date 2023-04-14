@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5525f7cd17d961d4c96ff5f2b9d1e07b, type: 3}
-  m_Name: Shirt1
+  m_Name: StrawHat
   m_EditorClassIdentifier: 
-  IdleFront: {fileID: 520595189, guid: 0de111e7282b7d3409849974d3d0cdeb, type: 3}
-  IdleBack: {fileID: 662965545, guid: 0de111e7282b7d3409849974d3d0cdeb, type: 3}
-  IdleSide: {fileID: 2018932679, guid: 0de111e7282b7d3409849974d3d0cdeb, type: 3}
+  IdleFront: {fileID: 1220416456, guid: cc446e5b31506fa46ac51fc6dc7206a5, type: 3}
+  IdleBack: {fileID: -1329373860, guid: cc446e5b31506fa46ac51fc6dc7206a5, type: 3}
+  IdleSide: {fileID: 878626811, guid: cc446e5b31506fa46ac51fc6dc7206a5, type: 3}
   FrontAnimationSprites: []
   DisabledOnFront: 0
   BackAnimationSprites: []

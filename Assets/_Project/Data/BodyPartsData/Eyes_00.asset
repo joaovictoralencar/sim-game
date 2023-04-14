@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5525f7cd17d961d4c96ff5f2b9d1e07b, type: 3}
-  m_Name: Eyes
+  m_Name: Eyes_00
   m_EditorClassIdentifier: 
   IdleFront: {fileID: 1009768479, guid: 96bb40e07d603c94394ffe39e31e8eca, type: 3}
   IdleBack: {fileID: 0}

@@ -438,7 +438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5679596120136666131, guid: 7d5574ce6f203064a915b379e18ca2c5, type: 3}
       propertyPath: m_Name
-      value: pfb_BaseButton
+      value: CloseButton
       objectReference: {fileID: 0}
     - target: {fileID: 8575817830965856778, guid: 7d5574ce6f203064a915b379e18ca2c5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
