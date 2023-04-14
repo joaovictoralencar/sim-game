@@ -15,9 +15,11 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
     [SerializeField] private Image _itemImage;
     [SerializeField] private TextMeshProUGUI _itemAmountText;
     [SerializeField] private Button _closeBtn;
+    private bool _hasSubSprite;
 
     public UnityEvent<GameObject> OnBeginDragItem { get; } = new();
     public UnityEvent<EquipItemData> OnEquipItem { get; } = new();
+    public UnityEvent<ItemData, int> OnDeleteItem { get; } = new();
     public UnityEvent<InventorySlot, ItemData, int> OnEndDragItem { get; } = new();
 
     private ItemData _itemData;
@@ -45,6 +47,17 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
         UpdateUI();
         _itemImage.enabled = true;
         _closeBtn.gameObject.SetActive(true);
+        //handle sub sprite
+        EquipItemData equipItemData = _itemData as EquipItemData;
+
+        _hasSubSprite = equipItemData != null && equipItemData.PartsToChange.Length > 1;
+        _itemImage.color = equipItemData == null ? new Color(1, 1, 1, 1) : equipItemData.Color;
+
+        if (equipItemData == null) return;
+
+        if (_hasSubSprite)
+            _itemImage.transform.GetChild(0).GetComponent<Image>().sprite =
+                equipItemData.PartsToChange[1].IdleFront;
     }
 
     public void ChangeItem(ItemData itemData, int amount)
@@ -56,7 +69,7 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
         UpdateUI();
     }
 
-    void EmptySlot()
+    public void EmptySlot()
     {
         _itemDataHolder.gameObject.SetActive(true);
         _itemData = null;
@@ -91,11 +104,13 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
         _itemImage.sprite = _itemData.Icon;
         _itemAmountText.gameObject.SetActive(ItemAmount > 1);
         _itemAmountText.text = ItemAmount.ToString();
+        _itemImage.transform.GetChild(0).gameObject.SetActive(_hasSubSprite);
     }
 
     public void DeleteItem()
     {
         EmptySlot();
+        OnDeleteItem.Invoke(_itemData, _index);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -142,10 +157,12 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
                 eventData.pointerCurrentRaycast.gameObject.GetComponent<EquipInventorySlot>();
 
             //equip item
-            if (equipSlot &&  _itemData.GetType() == typeof(EquipItemData))
+            EquipItemData equipItemData = _itemData as EquipItemData;
+            if (equipItemData != null && equipSlot && _itemData.GetType() == typeof(EquipItemData) &&
+                equipSlot.EquipBodyPart == equipItemData.Part)
             {
-                OnEquipItem.Invoke(_itemData as EquipItemData);
-                equipSlot.SetupItem(_itemData as EquipItemData);
+                OnEquipItem.Invoke(equipItemData);
+                equipSlot.SetupItem(equipItemData);
                 EmptySlot();
             }
             else //invalid drop

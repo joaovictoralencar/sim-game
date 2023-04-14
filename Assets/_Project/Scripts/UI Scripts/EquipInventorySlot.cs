@@ -5,9 +5,11 @@ using Image = UnityEngine.UI.Image;
 
 public class EquipInventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
+    [SerializeField] private BodyPart _equipBodyPart;
     [SerializeField] private RectTransform _itemDataHolder;
     [SerializeField] private Image _itemImage;
     [SerializeField] private Image _itemImagePlaceholder;
+    [SerializeField] private bool _hasSubSprite;
 
     public UnityEvent<GameObject> OnBeginDragItem { get; } = new();
     public UnityEvent<InventorySlot, EquipItemData> OnUnequip { get; } = new();
@@ -19,15 +21,13 @@ public class EquipInventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHand
 
     public ItemData ItemData => _itemData;
 
-    public void Initialize(int index)
-    {
-        _itemImagePlaceholder.gameObject.SetActive(true);
-        EmptySlot();
-    }
+    public BodyPart EquipBodyPart => _equipBodyPart;
+
 
     public void SetupItem(EquipItemData itemData)
     {
         _itemData = Instantiate(itemData);
+        _itemImage.color = itemData.Color;
         ShowSlot();
     }
 
@@ -48,12 +48,14 @@ public class EquipInventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHand
     {
         _itemImage.gameObject.SetActive(false);
         _itemImagePlaceholder.gameObject.SetActive(true);
+        if (_hasSubSprite) _itemImagePlaceholder.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     void ShowSlot()
     {
         _itemImage.gameObject.SetActive(true);
         _itemImagePlaceholder.gameObject.SetActive(false);
+        if (_hasSubSprite) _itemImagePlaceholder.transform.GetChild(0).gameObject.SetActive(false);
         UpdateUI();
     }
 

@@ -34,13 +34,16 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            OpenInventory();
+            if (!_inventoryUI.gameObject.activeSelf)
+                OpenInventory();
+            else CloseInventory();
         }
     }
 
     public void OpenInventory()
     {
-        if (!_canOpenCloseInventory) return;;
+        if (!_canOpenCloseInventory) return;
+
         //Play sound
         RefreshInventory();
         _canOpenCloseInventory = false;
@@ -52,17 +55,15 @@ public class Inventory : MonoBehaviour
     void RefreshInventory()
     {
         //RefreshInventory
-        for (int i = 0; i < _inventorySlotItems.Length; i++)
+        foreach (var slot in _inventorySlotItems)
         {
-            if (_inventorySlotItems[i].ItemData)
+            if (slot.ItemData)
             {
-                if (i < _inventoryItems.Length && _inventoryItems[i].ItemData)
-                    _inventorySlotItems[i].ChangeItem(_inventoryItems[i].ItemData, _inventoryItems[i].Amount);
+                slot.ChangeItem(slot.ItemData, slot.ItemAmount);
             }
             else
             {
-                if (i < _inventoryItems.Length && _inventoryItems[i].ItemData)
-                    _inventorySlotItems[i].SetupItem(_inventoryItems[i].ItemData, _inventoryItems[i].Amount);
+                slot.EmptySlot();
             }
         }
     }
@@ -96,10 +97,29 @@ public class Inventory : MonoBehaviour
             slot.Initialize(i);
             slot.OnBeginDragItem.AddListener(OnBeginDragItem);
             slot.OnEndDragItem.AddListener(OnDropItemInSlot);
+            slot.OnDeleteItem.AddListener(DeleteItem);
             if (_equipItem) slot.OnEquipItem.AddListener(_equipItem.OnEquipItem);
             _inventorySlotItems[i] = slot;
         }
-        
+
+        AddItemPackQA();
+        RefreshInventory();
+    }
+
+    private void DeleteItem(ItemData itemData, int slotIndex)
+    {
+        _inventorySlotItems[slotIndex].EmptySlot();
+
+        ItemPack itemToRemove = default;
+        foreach (var itemPack in _inventoryItems)
+        {
+            if (itemPack.ItemData == itemData)
+            {
+                itemToRemove = itemPack;
+            }
+        }
+
+        _inventoryItems.Remove(itemToRemove);
         RefreshInventory();
     }
 
@@ -188,7 +208,7 @@ public class Inventory : MonoBehaviour
     }
 
 
-    [Space(10)] public ItemPack[] _inventoryItems;
+    [Space(10)] public List<ItemPack> _inventoryItems;
 
     [ContextMenu("AddItem")]
     void AddItemPackQA()

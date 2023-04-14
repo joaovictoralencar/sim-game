@@ -325,12 +325,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e37c5a93229384b8889f3e35fb2a0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventorySize: 32
+  _inventorySize: 30
   _inventoryHolder: {fileID: 0}
   _inventorySlotPrefab: {fileID: 6886631029559987454, guid: 6ea9de73534be3f44b8348f2df2d14f5, type: 3}
   _previewHolder: {fileID: 0}
   _inventoryUI: {fileID: 0}
-  _inventoryItems: []
+  _inventoryItems:
+  - Amount: 1
+    ItemData: {fileID: 11400000, guid: 0aa2513b847301445b405b9516c19b66, type: 2}
+  - Amount: 10
+    ItemData: {fileID: 11400000, guid: d61154327e550314fbba09fb48caea6a, type: 2}
+  - Amount: 10
+    ItemData: {fileID: 11400000, guid: b45cffd328e96124f812a05ac9311618, type: 2}
+  - Amount: 10
+    ItemData: {fileID: 11400000, guid: b45cffd328e96124f812a05ac9311618, type: 2}
 --- !u!114 &1585682294
 MonoBehaviour:
   m_ObjectHideFlags: 0
