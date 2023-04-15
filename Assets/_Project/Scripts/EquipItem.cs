@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class EquipItem : MonoBehaviour
 {
@@ -18,10 +19,13 @@ public class EquipItem : MonoBehaviour
         foreach (EquipInventorySlot slot in _equipInventorySlots)
         {
             slot.OnUnequip.AddListener(UnequipItem);
+            slot.OnPointerEnterSlot.AddListener(_inventory.OnPointerEnterSlot);
+            slot.OnPointerExitSlot.AddListener(_inventory.OnPointerExitSlot);
+            slot.OnPointerMoveSlot.AddListener(_inventory.OnPointerMoveSlot);
             slot.OnBeginDragItem.AddListener(OnBeginDragItem);
         }
     }
-    
+
     private void OnBeginDragItem(GameObject itemPreview)
     {
         itemPreview.transform.SetParent(_inventory.PreviewHolder);

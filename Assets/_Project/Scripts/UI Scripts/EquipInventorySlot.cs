@@ -1,15 +1,21 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using Image = UnityEngine.UI.Image;
 
-public class EquipInventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class EquipInventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler,
+    IPointerExitHandler, IPointerMoveHandler
 {
     [SerializeField] private BodyPart _equipBodyPart;
     [SerializeField] private RectTransform _itemDataHolder;
     [SerializeField] private Image _itemImage;
     [SerializeField] private Image _itemImagePlaceholder;
     [SerializeField] private bool _hasSubSprite;
+
+    public UnityEvent<ItemData, PointerEventData> OnPointerEnterSlot { get; } = new();
+    public UnityEvent<ItemData, PointerEventData> OnPointerExitSlot { get; } = new();
+    public UnityEvent<ItemData, PointerEventData> OnPointerMoveSlot { get; } = new();
 
     public UnityEvent<GameObject> OnBeginDragItem { get; } = new();
     public UnityEvent<InventorySlot, EquipItemData> OnUnequip { get; } = new();
@@ -135,5 +141,22 @@ public class EquipInventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHand
         {
             _itemDataHolderPreview.position = eventData.position - _dragOffset;
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        _itemImage.rectTransform.DOScale(new Vector2(1.1f, 1.1f), .15f).SetEase(Ease.OutBack);
+        OnPointerEnterSlot.Invoke(_itemData, eventData);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        _itemImage.rectTransform.DOScale(new Vector2(1f, 1f), .1f).SetEase(Ease.InExpo);
+        OnPointerExitSlot.Invoke(_itemData, eventData);
+    }
+
+    public void OnPointerMove(PointerEventData eventData)
+    {
+        OnPointerMoveSlot.Invoke(_itemData, eventData);
     }
 }

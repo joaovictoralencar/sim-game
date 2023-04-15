@@ -330,6 +330,7 @@ MonoBehaviour:
   _inventorySlotPrefab: {fileID: 6886631029559987454, guid: 6ea9de73534be3f44b8348f2df2d14f5, type: 3}
   _previewHolder: {fileID: 0}
   _inventoryUI: {fileID: 0}
+  _itemInfoUI: {fileID: 0}
   _inventoryItems:
   - Amount: 1
     ItemData: {fileID: 11400000, guid: 0aa2513b847301445b405b9516c19b66, type: 2}
@@ -339,6 +340,10 @@ MonoBehaviour:
     ItemData: {fileID: 11400000, guid: b45cffd328e96124f812a05ac9311618, type: 2}
   - Amount: 10
     ItemData: {fileID: 11400000, guid: b45cffd328e96124f812a05ac9311618, type: 2}
+  - Amount: 1
+    ItemData: {fileID: 11400000, guid: e865252b61bf7424ab64d6ea6ef582aa, type: 2}
+  - Amount: 1
+    ItemData: {fileID: 11400000, guid: de0d76294d6cdef42960284e53257ae8, type: 2}
 --- !u!114 &1585682294
 MonoBehaviour:
   m_ObjectHideFlags: 0

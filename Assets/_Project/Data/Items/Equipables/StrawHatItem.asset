@@ -15,6 +15,7 @@ MonoBehaviour:
   _icon: {fileID: 1220416456, guid: cc446e5b31506fa46ac51fc6dc7206a5, type: 3}
   _itemName: Straw Hat
   _description: 'Gomu gomu no... '
+  _price: 100
   _canStack: 0
   _hasSlot: 1
   _isRemoveable: 1

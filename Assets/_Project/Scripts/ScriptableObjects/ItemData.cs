@@ -11,6 +11,7 @@ public class ItemData : ScriptableObject
     [SerializeField] private string _itemName;
 
     [TextArea] [SerializeField] private string _description;
+    [SerializeField] private float _price = 10;
 
     [SerializeField] private bool _canStack;
 
@@ -32,4 +33,5 @@ public class ItemData : ScriptableObject
 
     public string Description => _description;
 
+    public float Price => _price;
 }

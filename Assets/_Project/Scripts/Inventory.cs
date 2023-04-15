@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
 public class Inventory : MonoBehaviour
@@ -12,6 +13,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] private InventorySlot _inventorySlotPrefab;
     [SerializeField] private RectTransform _previewHolder;
     [SerializeField] private Transform _inventoryUI;
+    [SerializeField] private ItemInfoUI _itemInfoUI;
     private InventorySlot[] _inventorySlotItems;
     private int _itemsInInventory;
     private EquipItem _equipItem;
@@ -98,12 +100,33 @@ public class Inventory : MonoBehaviour
             slot.OnBeginDragItem.AddListener(OnBeginDragItem);
             slot.OnEndDragItem.AddListener(OnDropItemInSlot);
             slot.OnDeleteItem.AddListener(DeleteItem);
+            slot.OnPointerEnterSlot.AddListener(OnPointerEnterSlot);
+            slot.OnPointerMoveSlot.AddListener(OnPointerMoveSlot);
+            slot.OnPointerExitSlot.AddListener(OnPointerExitSlot);
             if (_equipItem) slot.OnEquipItem.AddListener(_equipItem.OnEquipItem);
             _inventorySlotItems[i] = slot;
         }
 
         AddItemPackQA();
         RefreshInventory();
+    }
+
+    public void OnPointerMoveSlot(ItemData itemData, PointerEventData pointerEventData)
+    {
+        if (itemData)
+            _itemInfoUI.MoveItemInfo(pointerEventData.position);
+    }
+
+    public void OnPointerExitSlot(ItemData itemData, PointerEventData pointerEventData)
+    {
+        if (itemData)
+            _itemInfoUI.HideItemInfo();
+    }
+
+    public void OnPointerEnterSlot(ItemData itemData, PointerEventData pointerEventData)
+    {
+        if (itemData)
+            _itemInfoUI.ShowItemInfo(itemData, pointerEventData.position);
     }
 
     private void DeleteItem(ItemData itemData, int slotIndex)

@@ -15,6 +15,7 @@ MonoBehaviour:
   _icon: {fileID: 21300000, guid: 2d996a9f7524c354585e081fdf1c9ada, type: 3}
   _itemName: Avocado
   _description: It's an avocado.
+  _price: 2
   _canStack: 1
   _hasSlot: 1
   _isRemoveable: 1

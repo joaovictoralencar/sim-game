@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -9,7 +10,8 @@ using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
 using Image = UnityEngine.UI.Image;
 
-public class InventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class InventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler,
+    IPointerExitHandler, IPointerMoveHandler
 {
     [SerializeField] private Transform _itemDataHolder;
     [SerializeField] private Image _itemImage;
@@ -18,6 +20,9 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
     private bool _hasSubSprite;
 
     public UnityEvent<GameObject> OnBeginDragItem { get; } = new();
+    public UnityEvent<ItemData, PointerEventData> OnPointerEnterSlot { get; } = new();
+    public UnityEvent<ItemData, PointerEventData> OnPointerExitSlot { get; } = new();
+    public UnityEvent<ItemData, PointerEventData> OnPointerMoveSlot { get; } = new();
     public UnityEvent<EquipItemData> OnEquipItem { get; } = new();
     public UnityEvent<ItemData, int> OnDeleteItem { get; } = new();
     public UnityEvent<InventorySlot, ItemData, int> OnEndDragItem { get; } = new();
@@ -139,6 +144,8 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (_itemData == null) return;
+        
         if (_itemDataHolderPreview)
             Destroy(_itemDataHolderPreview.gameObject);
 
@@ -179,9 +186,29 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
 
     public void OnDrag(PointerEventData eventData)
     {
+        
+        if (_itemData == null) return;
+
         if (_itemDataHolderPreview)
         {
             _itemDataHolderPreview.position = eventData.position - _dragOffset;
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        _itemImage.rectTransform.DOScale(new Vector2(1.1f, 1.1f), .15f).SetEase(Ease.OutBack);
+        OnPointerEnterSlot.Invoke(_itemData, eventData);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        _itemImage.rectTransform.DOScale(new Vector2(1f, 1f), .1f).SetEase(Ease.InExpo);
+        OnPointerExitSlot.Invoke(_itemData, eventData);
+    }
+
+    public void OnPointerMove(PointerEventData eventData)
+    {
+        OnPointerMoveSlot.Invoke(_itemData, eventData);
     }
 }

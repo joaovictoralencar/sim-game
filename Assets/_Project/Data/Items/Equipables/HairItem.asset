@@ -15,6 +15,7 @@ MonoBehaviour:
   _icon: {fileID: 360296769, guid: b83096ecaf0e379478c41ba97f7aa855, type: 3}
   _itemName: Hair
   _description: Er... hm... it's a wig. Yes, you are bald.
+  _price: 50
   _canStack: 0
   _hasSlot: 1
   _isRemoveable: 1
