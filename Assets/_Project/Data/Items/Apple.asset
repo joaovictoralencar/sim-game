@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 61d01e8616313344b978a6518fd86ed6, type: 3}
   _itemName: Apple
-  _description: It's an apple.
+  _description: A juice red apple.
+  _price: 1.5
   _canStack: 1
   _hasSlot: 1
   _isRemoveable: 1

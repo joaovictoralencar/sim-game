@@ -1,24 +1,87 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private int _inventorySize = 30;
     [SerializeField] private RectTransform _inventoryHolder;
     [SerializeField] private InventorySlot _inventorySlotPrefab;
-    private ItemData[] _inventoryItems;
+    [SerializeField] private RectTransform _previewHolder;
+    [SerializeField] private Transform _inventoryUI;
+    [SerializeField] private ItemInfoUI _itemInfoUI;
     private InventorySlot[] _inventorySlotItems;
     private int _itemsInInventory;
+    private EquipItem _equipItem;
+    private bool _canOpenCloseInventory = true;
+
+    public RectTransform PreviewHolder => _previewHolder;
 
     private void Awake()
     {
-        //Initialize inventory array
-        _inventoryItems = new ItemData[_inventorySize];
-
+        _equipItem = GetComponent<EquipItem>();
         InitializeSlots();
     }
+
+    private void Start()
+    {
+        CloseInventory();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (!_inventoryUI.gameObject.activeSelf)
+                OpenInventory();
+            else CloseInventory();
+        }
+    }
+
+    public void OpenInventory()
+    {
+        if (!_canOpenCloseInventory) return;
+
+        //Play sound
+        RefreshInventory();
+        _canOpenCloseInventory = false;
+        _inventoryUI.gameObject.SetActive(true);
+        _inventoryUI.DOScale(Vector3.one, .2f).SetEase(Ease.OutBack)
+            .OnComplete(() => { _canOpenCloseInventory = true; });
+    }
+
+    void RefreshInventory()
+    {
+        //RefreshInventory
+        foreach (var slot in _inventorySlotItems)
+        {
+            if (slot.ItemData)
+            {
+                slot.ChangeItem(slot.ItemData, slot.ItemAmount);
+            }
+            else
+            {
+                slot.EmptySlot();
+            }
+        }
+    }
+
+    public void CloseInventory()
+    {
+        if (!_canOpenCloseInventory) return;
+
+        //Play sound
+        _inventoryUI.DOScale(Vector3.zero, .2f).SetEase(Ease.InBack).OnComplete(() =>
+        {
+            _canOpenCloseInventory = true;
+            _inventoryUI.gameObject.SetActive(false);
+        });
+    }
+
 
     private void InitializeSlots()
     {
@@ -34,8 +97,53 @@ public class Inventory : MonoBehaviour
         {
             InventorySlot slot = Instantiate(_inventorySlotPrefab, _inventoryHolder);
             slot.Initialize(i);
+            slot.OnBeginDragItem.AddListener(OnBeginDragItem);
+            slot.OnEndDragItem.AddListener(OnDropItemInSlot);
+            slot.OnDeleteItem.AddListener(DeleteItem);
+            slot.OnPointerEnterSlot.AddListener(OnPointerEnterSlot);
+            slot.OnPointerMoveSlot.AddListener(OnPointerMoveSlot);
+            slot.OnPointerExitSlot.AddListener(OnPointerExitSlot);
+            if (_equipItem) slot.OnEquipItem.AddListener(_equipItem.OnEquipItem);
             _inventorySlotItems[i] = slot;
         }
+
+        AddItemPackQA();
+        RefreshInventory();
+    }
+
+    public void OnPointerMoveSlot(ItemData itemData, PointerEventData pointerEventData)
+    {
+        if (itemData)
+            _itemInfoUI.MoveItemInfo(pointerEventData.position);
+    }
+
+    public void OnPointerExitSlot(ItemData itemData, PointerEventData pointerEventData)
+    {
+        if (itemData)
+            _itemInfoUI.HideItemInfo();
+    }
+
+    public void OnPointerEnterSlot(ItemData itemData, PointerEventData pointerEventData)
+    {
+        if (itemData)
+            _itemInfoUI.ShowItemInfo(itemData, pointerEventData.position);
+    }
+
+    private void DeleteItem(ItemData itemData, int slotIndex)
+    {
+        _inventorySlotItems[slotIndex].EmptySlot();
+
+        ItemPack itemToRemove = default;
+        foreach (var itemPack in _inventoryItems)
+        {
+            if (itemPack.ItemData == itemData)
+            {
+                itemToRemove = itemPack;
+            }
+        }
+
+        _inventoryItems.Remove(itemToRemove);
+        RefreshInventory();
     }
 
     private void AddItem(ItemData itemData, bool stack, int amount = 1)
@@ -48,7 +156,7 @@ public class Inventory : MonoBehaviour
 
         if (amount <= 0) amount = 1;
 
-        if (stack)
+        if (stack && itemData.CanStack)
         {
             //look for item
             //add at first empty slot
@@ -69,6 +177,29 @@ public class Inventory : MonoBehaviour
         }
 
         _itemsInInventory++;
+    }
+
+    private void OnDropItemInSlot(InventorySlot slot, ItemData itemData, int amount)
+    {
+        //empty slot
+        if (slot.ItemData == null)
+        {
+            slot.ChangeItem(itemData, amount);
+        }
+        else if (slot.ItemData.ItemName == itemData.ItemName && itemData.CanStack)
+        {
+            //stack
+            slot.ChangeItem(itemData, amount + slot.ItemAmount);
+        }
+        else
+        {
+            //occupied slot
+        }
+    }
+
+    private void OnBeginDragItem(GameObject itemPreview)
+    {
+        itemPreview.transform.SetParent(PreviewHolder);
     }
 
     InventorySlot GetFirstEmptySlot()
@@ -99,13 +230,16 @@ public class Inventory : MonoBehaviour
         AddItem(itemPack.ItemData, false, itemPack.Amount);
     }
 
-    [Space(10), Header("QA")]
-    public ItemPack itemToAdd;
 
-    [ContextMenu("AddItem")] 
+    [Space(10)] public List<ItemPack> _inventoryItems;
+
+    [ContextMenu("AddItem")]
     void AddItemPackQA()
     {
-        AddItemPack(itemToAdd);
+        foreach (var itemPack in _inventoryItems)
+        {
+            AddItemPack(itemPack);
+        }
     }
 }
 

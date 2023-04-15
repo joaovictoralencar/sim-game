@@ -25,6 +25,17 @@ public class BodyPartAnimation : MonoBehaviour
         SetSpriteListByMovement();
     }
 
+    public void Equip(BodyPartData bodyPartData, Color color)
+    {
+        gameObject.SetActive(true);
+        _bodyPartData = bodyPartData;
+        ChangeSpriteColor(color);
+    }
+    public void UnEquip()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void ChangeSpriteColor(Color newColor)
     {
         newColor.a = 1;
