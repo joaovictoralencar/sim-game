@@ -60,9 +60,17 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
 
         if (equipItemData == null) return;
 
-        if (_hasSubSprite)
-            _itemImage.transform.GetChild(0).GetComponent<Image>().sprite =
-                equipItemData.PartsToChange[1].IdleFront;
+        Image subSpriteImage = _itemImage.transform.GetChild(0).GetComponent<Image>();
+        if (!_hasSubSprite)
+        {
+            subSpriteImage.gameObject.SetActive(false);
+            return;
+        }
+
+        subSpriteImage.gameObject.SetActive(true);
+        subSpriteImage.enabled = true;
+        subSpriteImage.sprite = equipItemData.PartsToChange[1].IdleFront;
+        subSpriteImage.color = equipItemData.Color;
     }
 
     public void ChangeItem(ItemData itemData, int amount)
@@ -82,6 +90,8 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
         _itemAmountText.text = "";
         _itemImage.sprite = null;
         _itemImage.enabled = false;
+        Image subSpriteImage = _itemImage.transform.GetChild(0).GetComponent<Image>();
+        subSpriteImage.enabled = false;
         _closeBtn.gameObject.SetActive(false);
     }
 
@@ -145,7 +155,7 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
     public void OnEndDrag(PointerEventData eventData)
     {
         if (_itemData == null) return;
-        
+
         if (_itemDataHolderPreview)
             Destroy(_itemDataHolderPreview.gameObject);
 
@@ -186,7 +196,6 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
 
     public void OnDrag(PointerEventData eventData)
     {
-        
         if (_itemData == null) return;
 
         if (_itemDataHolderPreview)

@@ -54,14 +54,14 @@ public class EquipInventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHand
     {
         _itemImage.gameObject.SetActive(false);
         _itemImagePlaceholder.gameObject.SetActive(true);
-        if (_hasSubSprite) _itemImagePlaceholder.transform.GetChild(0).gameObject.SetActive(true);
+        if (_hasSubSprite) _itemImagePlaceholder.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     void ShowSlot()
     {
         _itemImage.gameObject.SetActive(true);
         _itemImagePlaceholder.gameObject.SetActive(false);
-        if (_hasSubSprite) _itemImagePlaceholder.transform.GetChild(0).gameObject.SetActive(false);
+        if (_hasSubSprite) _itemImagePlaceholder.transform.GetChild(0).gameObject.SetActive(true);
         UpdateUI();
     }
 

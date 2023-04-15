@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: -907461455, guid: b65b5bf4a1acc9e45ad6dc42fbfe9906, type: 3}
   _itemName: Blue Jeans
-  _description: Please, wear pants!
+  _description: Equipable. Please, wear pants!
   _price: 200
   _canStack: 0
   _hasSlot: 1
