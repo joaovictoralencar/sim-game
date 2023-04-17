@@ -12,4 +12,12 @@ public class BasketSlot : ItemSlot
 {
     public UnityEvent<ItemData, int> OnDeleteItem { get; } = new();
     
+    public void RemoveFromBasket()
+    {
+        if (itemData == null) return;
+        ItemData itemDataClone = itemData;
+        int amountClone = itemAmount;
+        EmptySlot();
+        OnDeleteItem.Invoke(itemDataClone, amountClone);
+    }
 }

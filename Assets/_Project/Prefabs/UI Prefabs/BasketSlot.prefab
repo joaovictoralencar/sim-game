@@ -211,7 +211,7 @@ MonoBehaviour:
   _itemAmountText: {fileID: 6836368769979064615}
   _closeBtn: {fileID: 5504604741948898057}
   _itemImagePlaceholder: {fileID: 0}
-  _pointerOffset: {x: 10, y: 10}
+  pointerOffset: {x: 10, y: 10}
 --- !u!1 &6836368769979064613
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,18 +529,18 @@ PrefabInstance:
     - target: {fileID: 8575817830965856778, guid: 7d5574ce6f203064a915b379e18ca2c5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6836368769302101459}
     - target: {fileID: 8575817830965856778, guid: 7d5574ce6f203064a915b379e18ca2c5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8575817830965856778, guid: 7d5574ce6f203064a915b379e18ca2c5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DeleteItem
+      value: RemoveFromBasket
       objectReference: {fileID: 0}
     - target: {fileID: 8575817830965856778, guid: 7d5574ce6f203064a915b379e18ca2c5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: InventorySlot, Assembly-CSharp
+      value: BasketSlot, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8575817830965856778, guid: 7d5574ce6f203064a915b379e18ca2c5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

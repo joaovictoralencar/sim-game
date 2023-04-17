@@ -13,6 +13,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] private InventorySlot _inventorySlotPrefab;
     [SerializeField] private RectTransform _previewHolder;
     [SerializeField] private Transform _inventoryUI;
+    [SerializeField] private Shopping _shopping;
     private InventorySlot[] _inventorySlotItems;
     private int _itemsInInventory;
     private EquipItem _equipItem;
@@ -25,6 +26,18 @@ public class Inventory : MonoBehaviour
     {
         _equipItem = GetComponent<EquipItem>();
         InitializeSlots();
+        _shopping.OnOpenShopping.AddListener(OnOpenShopping);
+        _shopping.OnCloseShopping.AddListener(OnCloseShopping);
+    }
+
+    private void OnOpenShopping()
+    {
+        _canOpenCloseInventory = false;
+    }
+
+    private void OnCloseShopping()
+    {
+        _canOpenCloseInventory = true;
     }
 
     private void Start()
@@ -155,6 +168,7 @@ public class Inventory : MonoBehaviour
                 });
             }
         }
+
         RefreshInventory();
     }
 

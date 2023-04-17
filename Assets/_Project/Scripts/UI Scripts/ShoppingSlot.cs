@@ -10,14 +10,14 @@ public class ShoppingSlot : ItemSlot
     [SerializeField] private TextMeshProUGUI _priceText;
     private ItemPack _itemPack;
     private Button _btn;
-    public UnityEvent<ItemData, int> OnBuyItem { get; } = new();
+    public UnityEvent<ItemData, int> OnAddItemToBasket { get; } = new();
 
     
     private void Awake()
     {
         _btn = GetComponentInChildren<Button>();
         //Add on buy listener
-        _btn.onClick.AddListener(() => { OnBuyItem.Invoke(itemData, 1); });
+        _btn.onClick.AddListener(() => { OnAddItemToBasket.Invoke(itemData, 1); });
     }
 
     public override void SetupItem(ItemPack itemPack)

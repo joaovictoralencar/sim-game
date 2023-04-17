@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class Basket : MonoBehaviour
@@ -15,13 +16,31 @@ public class Basket : MonoBehaviour
     List<ItemPack> _basketItems;
     private BasketSlot[] _basketSlotItems;
     public ItemInfoUI ItemInfoUI;
+    
+    public UnityEvent<ItemData, int> OnDeleteItem { get; } = new();
+
 
     private void Start()
+    {
+        _shopping.OnBuyItems.AddListener(OnPurchaseItems);
+        _shopping.OnCloseShopping.AddListener(RemoveAllFromBasket);
+        _shopping.OnOpenShopping.AddListener(ResetBasket);
+    }
+
+    private void ResetBasket()
     {
         InitializeBasket();
     }
 
-    private void InitializeBasket()
+    public void RemoveAllFromBasket()
+    {
+        for (int i = _basketSlotItems.Length - 1; i >= 0; i--)
+        {
+            _basketSlotItems[i].RemoveFromBasket();
+        }
+    }
+
+    public void InitializeBasket()
     {
         _basketSlotItems = new BasketSlot[_shopping.ShoppingMaxItemsCount];
         _basketItems = new List<ItemPack>(_maxBasketItemsCount);
@@ -44,14 +63,15 @@ public class Basket : MonoBehaviour
         RefreshShoppingUI();
     }
 
-    private void DeleteItem(ItemData itemData, int slotIndex)
+    private void DeleteItem(ItemData itemData, int amount)
     {
-        _basketSlotItems[slotIndex].EmptySlot();
+        _shopping.ReturnItemToShopping(itemData, amount);
+        OnDeleteItem.Invoke(itemData, amount);
 
         ItemPack itemToRemove = default;
         foreach (var itemPack in _basketItems)
         {
-            if (itemPack.ItemData == itemData)
+            if (itemPack.ItemData.ItemName == itemData.ItemName && itemPack.Amount == amount)
             {
                 itemToRemove = itemPack;
             }
@@ -111,6 +131,22 @@ public class Basket : MonoBehaviour
             else
             {
                 slot.EmptySlot();
+            }
+        }
+    }
+
+    void OnPurchaseItems(PlayerGold playerGold)
+    {
+        foreach (var slot in _basketSlotItems)
+        {
+            if (slot.ItemData != null)
+            {
+                _inventory.AddItemPack(new ItemPack
+                {
+                    Amount = slot.ItemAmount,
+                    ItemData = slot.ItemData
+                });
+                playerGold.ChangeValue(-slot.ItemData.Price);
             }
         }
     }
