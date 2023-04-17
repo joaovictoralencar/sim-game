@@ -4,85 +4,60 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using Image = UnityEngine.UI.Image;
 
-public class EquipInventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler,
-    IPointerExitHandler, IPointerMoveHandler
+public class EquipInventorySlot : ItemSlot, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     [SerializeField] private BodyPart _equipBodyPart;
-    [SerializeField] private RectTransform _itemDataHolder;
-    [SerializeField] private Image _itemImage;
-    [SerializeField] private Image _itemImagePlaceholder;
-    [SerializeField] private bool _hasSubSprite;
-
-    public UnityEvent<ItemData, PointerEventData> OnPointerEnterSlot { get; } = new();
-    public UnityEvent<ItemData, PointerEventData> OnPointerExitSlot { get; } = new();
-    public UnityEvent<ItemData, PointerEventData> OnPointerMoveSlot { get; } = new();
 
     public UnityEvent<GameObject> OnBeginDragItem { get; } = new();
     public UnityEvent<InventorySlot, EquipItemData> OnUnequip { get; } = new();
 
-    private EquipItemData _itemData;
-    [SerializeField] Vector2 _dragOffset = new Vector2(10, 10);
+    private EquipItemData _equipItemData;
 
     private Transform _itemDataHolderPreview;
-
-    public ItemData ItemData => _itemData;
 
     public BodyPart EquipBodyPart => _equipBodyPart;
 
 
-    public void SetupItem(EquipItemData itemData)
+    public void SetupItem(EquipItemData equipItemData)
     {
-        _itemData = Instantiate(itemData);
-        _itemImage.color = itemData.Color;
+        itemData = Instantiate(equipItemData);
+        _equipItemData = itemData as EquipItemData;
+        SetupItemEquipableItem();
+    }
+
+    private void SetupItemEquipableItem()
+    {
+        itemAmount = 1;
+
         ShowSlot();
-    }
 
-    public void ChangeItem(EquipItemData itemData)
-    {
-        _itemData = itemData;
-        ShowSlot();
-    }
+        //handle sub sprite
+        hasSubSprite = _equipItemData.PartsToChange.Length > 1;
+        itemImage.color = _equipItemData.Color;
+        itemImage.gameObject.SetActive(true);
 
-    void EmptySlot()
-    {
-        HideSlot();
-        _itemData = null;
-        _itemImage.sprite = null;
-    }
 
-    void HideSlot()
-    {
-        _itemImage.gameObject.SetActive(false);
-        _itemImagePlaceholder.gameObject.SetActive(true);
-        if (_hasSubSprite) _itemImagePlaceholder.transform.GetChild(0).gameObject.SetActive(false);
-    }
-
-    void ShowSlot()
-    {
-        _itemImage.gameObject.SetActive(true);
-        _itemImagePlaceholder.gameObject.SetActive(false);
-        if (_hasSubSprite) _itemImagePlaceholder.transform.GetChild(0).gameObject.SetActive(true);
-        UpdateUI();
-    }
-
-    void UpdateUI()
-    {
-        if (_itemData == null)
+        if (itemImage.transform.childCount == 0) return;
+        Image subSpriteImage = itemImage.transform.GetChild(0).GetComponent<Image>();
+        if (!hasSubSprite)
         {
-            Debug.LogError("No item data is assigned to " + name, gameObject);
+            subSpriteImage.gameObject.SetActive(false);
             return;
         }
 
-        _itemImage.sprite = _itemData.Icon;
+        subSpriteImage.gameObject.SetActive(true);
+        subSpriteImage.sprite = _equipItemData.PartsToChange[1].IdleFront;
+        subSpriteImage.color = _equipItemData.Color;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (_itemData == null) return;
+        if (_equipItemData == null) return;
+        showInfoUI = false;
 
         HideSlot();
 
-        _itemDataHolderPreview = Instantiate(_itemImage.gameObject, _itemDataHolder.parent).transform;
+        _itemDataHolderPreview = Instantiate(itemImage.gameObject, itemDataHolder.parent).transform;
         _itemDataHolderPreview.gameObject.SetActive(true);
         _itemDataHolderPreview.GetComponentInChildren<Image>().raycastTarget = false;
 
@@ -105,6 +80,7 @@ public class EquipInventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHand
         if (_itemDataHolderPreview)
             Destroy(_itemDataHolderPreview.gameObject);
 
+        showInfoUI = true;
         //end drag off UI
         if (eventData.pointerCurrentRaycast.gameObject == null)
         {
@@ -120,8 +96,12 @@ public class EquipInventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHand
         {
             if (slot.ItemData == null)
             {
-                slot.SetupItem(_itemData);
-                OnUnequip.Invoke(slot, _itemData);
+                slot.SetupItem(new ItemPack
+                {
+                    Amount = 1,
+                    ItemData = _equipItemData
+                });
+                OnUnequip.Invoke(slot, _equipItemData);
                 EmptySlot();
             }
             else
@@ -139,24 +119,7 @@ public class EquipInventorySlot : MonoBehaviour, IBeginDragHandler, IEndDragHand
     {
         if (_itemDataHolderPreview)
         {
-            _itemDataHolderPreview.position = eventData.position - _dragOffset;
+            _itemDataHolderPreview.position = eventData.position - pointerOffset;
         }
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        _itemImage.rectTransform.DOScale(new Vector2(1.1f, 1.1f), .15f).SetEase(Ease.OutBack);
-        OnPointerEnterSlot.Invoke(_itemData, eventData);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        _itemImage.rectTransform.DOScale(new Vector2(1f, 1f), .1f).SetEase(Ease.InExpo);
-        OnPointerExitSlot.Invoke(_itemData, eventData);
-    }
-
-    public void OnPointerMove(PointerEventData eventData)
-    {
-        OnPointerMoveSlot.Invoke(_itemData, eventData);
     }
 }

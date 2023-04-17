@@ -21,17 +21,45 @@ public class ItemData : ScriptableObject
     [SerializeField, Tooltip("Can this item be dropped or destroyed?")]
     private bool _isRemoveable;
 
-    public Sprite Icon => _icon;
+    public Sprite Icon
+    {
+        get => _icon;
+        set => _icon = value;
+    }
 
-    public string ItemName => _itemName;
+    public string ItemName
+    {
+        get => _itemName;
+        set => _itemName = value;
+    }
 
-    public bool CanStack => _canStack;
+    public bool CanStack
+    {
+        get => _canStack;
+        set => _canStack = value;
+    }
 
-    public bool HasSlot => _hasSlot;
+    public bool HasSlot
+    {
+        get => _hasSlot;
+        set => _hasSlot = value;
+    }
 
-    public bool IsRemoveable => _isRemoveable;
+    public bool IsRemoveable
+    {
+        get => _isRemoveable;
+        set => _isRemoveable = value;
+    }
 
-    public string Description => _description;
+    public string Description
+    {
+        get => _description;
+        set => _description = value;
+    }
 
-    public float Price => _price;
+    public float Price
+    {
+        get => _price;
+        set => _price = value;
+    }
 }

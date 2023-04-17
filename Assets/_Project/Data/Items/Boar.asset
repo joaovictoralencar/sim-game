@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 936755d1f027b624db54903e423099b8, type: 3}
-  m_Name: Apple
+  m_Name: Boar
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 61d01e8616313344b978a6518fd86ed6, type: 3}
-  _itemName: Apple
-  _description: A crisp and juicy fruit, perfect for snacking.
-  _price: 20
+  _icon: {fileID: 21300000, guid: 36c5c2d32d6e5834ebf3d84ae5c8b01e, type: 3}
+  _itemName: Whiskey
+  _description: The perfect drink to warm you up on a cold night.
+  _price: 200
   _canStack: 1
   _hasSlot: 1
   _isRemoveable: 1

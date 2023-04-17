@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 936755d1f027b624db54903e423099b8, type: 3}
-  m_Name: Apple
+  m_Name: Bread
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 61d01e8616313344b978a6518fd86ed6, type: 3}
-  _itemName: Apple
-  _description: A crisp and juicy fruit, perfect for snacking.
-  _price: 20
+  _icon: {fileID: 21300000, guid: 0b9e159b363a1ff4f8982693963e393d, type: 3}
+  _itemName: Bread
+  _description: ' A comforting staple, perfect for sandwiches or toasting.'
+  _price: 60
   _canStack: 1
   _hasSlot: 1
   _isRemoveable: 1

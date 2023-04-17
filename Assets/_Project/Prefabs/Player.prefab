@@ -330,7 +330,7 @@ MonoBehaviour:
   _inventorySlotPrefab: {fileID: 6886631029559987454, guid: 6ea9de73534be3f44b8348f2df2d14f5, type: 3}
   _previewHolder: {fileID: 0}
   _inventoryUI: {fileID: 0}
-  _itemInfoUI: {fileID: 0}
+  ItemInfoUI: {fileID: 0}
   _inventoryItems:
   - Amount: 1
     ItemData: {fileID: 11400000, guid: 0aa2513b847301445b405b9516c19b66, type: 2}

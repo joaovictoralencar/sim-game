@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 936755d1f027b624db54903e423099b8, type: 3}
-  m_Name: Apple
+  m_Name: Bug
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 61d01e8616313344b978a6518fd86ed6, type: 3}
-  _itemName: Apple
-  _description: A crisp and juicy fruit, perfect for snacking.
-  _price: 20
+  _icon: {fileID: 21300000, guid: 4043a37a958048f4a9402cf4f7c6157f, type: 3}
+  _itemName: Bug
+  _description: A crunchy and protein-packed snack, perfect for the adventurous eater.
+    I guarantee you won't find it anywhere else but here.
+  _price: 30
   _canStack: 1
   _hasSlot: 1
   _isRemoveable: 1

@@ -713,6 +713,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopSlot
       objectReference: {fileID: 0}
+    - target: {fileID: 8575817830965856778, guid: 7d5574ce6f203064a915b379e18ca2c5, type: 3}
+      propertyPath: m_Transition
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8970012192744971439, guid: 7d5574ce6f203064a915b379e18ca2c5, type: 3}
       propertyPath: m_Type
       value: 0
@@ -723,6 +727,30 @@ PrefabInstance:
       objectReference: {fileID: 21300016, guid: 1371fc82b69121842b446cf214f43463, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d5574ce6f203064a915b379e18ca2c5, type: 3}
+--- !u!1 &514694064603332966 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5679596120136666131, guid: 7d5574ce6f203064a915b379e18ca2c5, type: 3}
+  m_PrefabInstance: {fileID: 5329294454245412213}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8916814649211886779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514694064603332966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f202b02090f4cdb449dc191cf9c90621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataHolder: {fileID: 7147252285748141909}
+  itemImage: {fileID: 7147252286574936617}
+  _itemAmountText: {fileID: 7147252287428797388}
+  _closeBtn: {fileID: 0}
+  _itemImagePlaceholder: {fileID: 0}
+  pointerOffset: {x: 10, y: 10}
+  _priceText: {fileID: 1884792258}
 --- !u!224 &8412795093308919248 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4410490244689952933, guid: 7d5574ce6f203064a915b379e18ca2c5, type: 3}

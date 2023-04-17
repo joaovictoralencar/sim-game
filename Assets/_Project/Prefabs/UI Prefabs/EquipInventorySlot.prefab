@@ -166,10 +166,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0595e5bff61ff734dac8f97a22f67e64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemDataHolder: {fileID: 3209703648674183153}
-  _itemImage: {fileID: 1456641842518125644}
+  itemDataHolder: {fileID: 3209703648674183153}
+  itemImage: {fileID: 1456641842518125644}
+  _itemAmountText: {fileID: 0}
+  _closeBtn: {fileID: 0}
   _itemImagePlaceholder: {fileID: 3209703647844231821}
-  _dragOffset: {x: 10, y: 10}
+  pointerOffset: {x: 10, y: 10}
+  _equipBodyPart: 0
 --- !u!1 &3209703647844231823
 GameObject:
   m_ObjectHideFlags: 0

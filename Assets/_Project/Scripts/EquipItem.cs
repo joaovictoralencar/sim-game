@@ -18,10 +18,8 @@ public class EquipItem : MonoBehaviour
         _inventory = GetComponent<Inventory>();
         foreach (EquipInventorySlot slot in _equipInventorySlots)
         {
+            slot.ItemInfoUI = _inventory.ItemInfoUI;
             slot.OnUnequip.AddListener(UnequipItem);
-            slot.OnPointerEnterSlot.AddListener(_inventory.OnPointerEnterSlot);
-            slot.OnPointerExitSlot.AddListener(_inventory.OnPointerExitSlot);
-            slot.OnPointerMoveSlot.AddListener(_inventory.OnPointerMoveSlot);
             slot.OnBeginDragItem.AddListener(OnBeginDragItem);
         }
     }
