@@ -10,17 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d00f453d63e9db2438603b3dba791365, type: 3}
-  m_Name: ShirtItem
+  m_Name: BlackPants
   m_EditorClassIdentifier: 
-  _icon: {fileID: 520595189, guid: 0de111e7282b7d3409849974d3d0cdeb, type: 3}
-  _itemName: T-Shirt
-  _description: Equipable. A red T-Shirt.
+  _icon: {fileID: -907461455, guid: b65b5bf4a1acc9e45ad6dc42fbfe9906, type: 3}
+  _itemName: Blue Jeans
+  _description: Equipable. Please, wear pants!
   _price: 200
   _canStack: 0
   _hasSlot: 1
   _isRemoveable: 1
-  _part: 2
+  _part: 3
   _partsToChange:
-  - {fileID: 11400000, guid: 08dc3bf282b21a54d976d40870bcc5e5, type: 2}
-  - {fileID: 11400000, guid: e81884d4391eeaa48a0a4f23e0469655, type: 2}
-  _color: {r: 0.7735849, g: 0.15589705, b: 0.090494804, a: 1}
+  - {fileID: 11400000, guid: dc535c41210f99a4987c6ee721b186f5, type: 2}
+  _color: {r: 0.09161153, g: 0.08907082, b: 0.11320752, a: 1}

@@ -106,8 +106,15 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         if (hideCloseButton && _closeBtn) _closeBtn.gameObject.SetActive(false);
         itemDataHolder.gameObject.SetActive(false);
+        ShowPlaceholder();
+    }
+
+    private void ShowPlaceholder()
+    {
         if (_itemImagePlaceholder == null) return;
+        itemDataHolder.gameObject.SetActive(true);
         _itemImagePlaceholder.gameObject.SetActive(true);
+        itemImage.gameObject.SetActive(false);
         if (hasSubSprite) _itemImagePlaceholder.transform.GetChild(0).gameObject.SetActive(true);
     }
 
@@ -116,6 +123,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         itemDataHolder.gameObject.SetActive(true);
         UpdateUI();
         if (_itemImagePlaceholder == null) return;
+        itemDataHolder.gameObject.SetActive(true);
         _itemImagePlaceholder.gameObject.SetActive(false);
         if (hasSubSprite)
             _itemImagePlaceholder.transform.GetChild(0).gameObject.SetActive(false);
@@ -132,9 +140,14 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerExit(PointerEventData eventData)
     {
         if (itemData == null) return;
+        HideItemInfo();
+        OnPointerExitSlot.Invoke(itemData, eventData);
+    }
+
+    public void HideItemInfo()
+    {
         itemImage.rectTransform.DOScale(new Vector2(1f, 1f), .1f).SetEase(Ease.InExpo);
         ItemInfoUI.HideItemInfo();
-        OnPointerExitSlot.Invoke(itemData, eventData);
     }
 
     public void OnPointerMove(PointerEventData eventData)

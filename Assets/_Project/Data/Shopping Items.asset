@@ -15,51 +15,57 @@ MonoBehaviour:
   randomAmount: 1
   randomItems: 1
   _shoppingItems:
-  - Amount: 0
+  - Amount: 32
     ItemData: {fileID: 11400000, guid: b45cffd328e96124f812a05ac9311618, type: 2}
-  - Amount: 0
+  - Amount: 39
     ItemData: {fileID: 11400000, guid: d61154327e550314fbba09fb48caea6a, type: 2}
-  - Amount: 0
+  - Amount: 31
     ItemData: {fileID: 11400000, guid: 4aef97ffcb0f927439bfebe047e8defd, type: 2}
-  - Amount: 0
+  - Amount: 72
     ItemData: {fileID: 11400000, guid: 4e33f28b8b323384f924dbed5d881540, type: 2}
-  - Amount: 0
+  - Amount: 57
     ItemData: {fileID: 11400000, guid: 628652bec59109742a57e0363ef658d4, type: 2}
-  - Amount: 0
+  - Amount: 66
     ItemData: {fileID: 11400000, guid: cb635d3ea5c4db34bbbf855af809966d, type: 2}
-  - Amount: 0
+  - Amount: 31
     ItemData: {fileID: 11400000, guid: 5ffe4054fe0afe743a3c0d1d2b246b4d, type: 2}
-  - Amount: 0
+  - Amount: 55
     ItemData: {fileID: 11400000, guid: 201d11bfedf50be49b97041559b337e3, type: 2}
-  - Amount: 0
+  - Amount: 89
     ItemData: {fileID: 11400000, guid: d2ed86d5c18c3ad40813ce6e152595be, type: 2}
-  - Amount: 0
+  - Amount: 56
     ItemData: {fileID: 11400000, guid: 19c0a315fb65cfb449a6ff79eefa987d, type: 2}
-  - Amount: 0
+  - Amount: 53
     ItemData: {fileID: 11400000, guid: 70054e97ba710f44f8f26f6789930961, type: 2}
-  - Amount: 0
+  - Amount: 5
     ItemData: {fileID: 11400000, guid: de0d76294d6cdef42960284e53257ae8, type: 2}
-  - Amount: 0
+  - Amount: 46
     ItemData: {fileID: 11400000, guid: aa777dfed598a8b4c8872ebbaa46399a, type: 2}
-  - Amount: 0
+  - Amount: 17
     ItemData: {fileID: 11400000, guid: d347a70192b5945478116885f653dca0, type: 2}
-  - Amount: 0
+  - Amount: 98
     ItemData: {fileID: 11400000, guid: f33ef266d3cf79b4bbcd57e68b28b80c, type: 2}
-  - Amount: 0
+  - Amount: 53
     ItemData: {fileID: 11400000, guid: 6099c1efddd2cb149af45de8071effce, type: 2}
-  - Amount: 0
+  - Amount: 70
     ItemData: {fileID: 11400000, guid: e865252b61bf7424ab64d6ea6ef582aa, type: 2}
-  - Amount: 0
+  - Amount: 76
     ItemData: {fileID: 11400000, guid: c26f5655763e6a644a1d344e2827f904, type: 2}
-  - Amount: 0
+  - Amount: 45
     ItemData: {fileID: 11400000, guid: 1dff6cf7203c6c8488ff8ee750879c12, type: 2}
-  - Amount: 0
+  - Amount: 61
     ItemData: {fileID: 11400000, guid: 5290b1c14071e214a80d08726002edd8, type: 2}
-  - Amount: 0
+  - Amount: 82
     ItemData: {fileID: 11400000, guid: 0aa2513b847301445b405b9516c19b66, type: 2}
-  - Amount: 0
+  - Amount: 49
     ItemData: {fileID: 11400000, guid: 6f6e7d475827edf42827dfb35729ec3d, type: 2}
-  - Amount: 0
+  - Amount: 1
     ItemData: {fileID: 11400000, guid: fdb2d60e254d49b45a5990a3a27c14a1, type: 2}
-  - Amount: 0
+  - Amount: 88
     ItemData: {fileID: 11400000, guid: f8661061fa65c234db1b111cfe7f536a, type: 2}
+  - Amount: 1
+    ItemData: {fileID: 11400000, guid: 5c2840fcde30ab246a1f3546906c923f, type: 2}
+  - Amount: 77
+    ItemData: {fileID: 11400000, guid: 74f4887bcf891a54da972ab673c28aaa, type: 2}
+  - Amount: 65
+    ItemData: {fileID: 11400000, guid: c5ccd763d038807448c1242bbac3729d, type: 2}

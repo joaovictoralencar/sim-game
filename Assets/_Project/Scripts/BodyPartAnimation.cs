@@ -109,7 +109,7 @@ public class BodyPartAnimation : MonoBehaviour
 
     void AnimateSprites()
     {
-        if (_currentAnimationSprites.Length == 0 || _animationFrameIndex > _currentAnimationSprites.Length - 1) return;
+        if (_currentAnimationSprites == null || _currentAnimationSprites.Length == 0 || _animationFrameIndex > _currentAnimationSprites.Length - 1) return;
 
         if (_currentAnimationSprites.Length == 1)
         {

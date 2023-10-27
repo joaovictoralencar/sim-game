@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -14,11 +15,21 @@ public class PlayerInteract : MonoBehaviour
         cam = Camera.main;
     }
 
+    private int fingerID = -1;
+
+    private void Awake()
+    {
+#if !UNITY_EDITOR
+    fingerID = 0;
+#endif
+    }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             // Check if the mouse click was on the NPC collider
+            if (EventSystem.current.IsPointerOverGameObject(fingerID)) return;
             Vector2 mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero, Mathf.Infinity, _npcLayer);
 

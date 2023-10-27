@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d00f453d63e9db2438603b3dba791365, type: 3}
-  m_Name: PantsItem
+  m_Name: BlackHairItem
   m_EditorClassIdentifier: 
-  _icon: {fileID: -907461455, guid: b65b5bf4a1acc9e45ad6dc42fbfe9906, type: 3}
-  _itemName: Blue Jeans
-  _description: Equipable. Please, wear pants!
-  _price: 200
+  _icon: {fileID: 360296769, guid: b83096ecaf0e379478c41ba97f7aa855, type: 3}
+  _itemName: Hair
+  _description: Equipable. Er... hm... it's a wig. Yes, you are bald.
+  _price: 50
   _canStack: 0
   _hasSlot: 1
   _isRemoveable: 1
-  _part: 3
+  _part: 0
   _partsToChange:
-  - {fileID: 11400000, guid: dc535c41210f99a4987c6ee721b186f5, type: 2}
-  _color: {r: 0.069038905, g: 0, b: 0.6698113, a: 1}
+  - {fileID: 11400000, guid: 1d01b240be80ab345a4b09966ba0a2ec, type: 2}
+  _color: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}

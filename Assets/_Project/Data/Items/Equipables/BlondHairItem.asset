@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d00f453d63e9db2438603b3dba791365, type: 3}
+  m_Name: BlondHairItem
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 360296769, guid: b83096ecaf0e379478c41ba97f7aa855, type: 3}
+  _itemName: Hair
+  _description: Equipable. Er... hm... it's a wig. Yes, you are bald.
+  _price: 50
+  _canStack: 0
+  _hasSlot: 1
+  _isRemoveable: 1
+  _part: 0
+  _partsToChange:
+  - {fileID: 11400000, guid: 1d01b240be80ab345a4b09966ba0a2ec, type: 2}
+  _color: {r: 0.8679245, g: 0.74246985, b: 0.15884651, a: 1}

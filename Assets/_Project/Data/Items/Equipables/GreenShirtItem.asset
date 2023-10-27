@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d00f453d63e9db2438603b3dba791365, type: 3}
+  m_Name: GreenShirtItem
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 520595189, guid: 0de111e7282b7d3409849974d3d0cdeb, type: 3}
+  _itemName: T-Shirt
+  _description: Equipable. A green T-Shirt.
+  _price: 200
+  _canStack: 0
+  _hasSlot: 1
+  _isRemoveable: 1
+  _part: 2
+  _partsToChange:
+  - {fileID: 11400000, guid: 08dc3bf282b21a54d976d40870bcc5e5, type: 2}
+  - {fileID: 11400000, guid: e81884d4391eeaa48a0a4f23e0469655, type: 2}
+  _color: {r: 0, g: 0.5471698, b: 0.02956277, a: 1}

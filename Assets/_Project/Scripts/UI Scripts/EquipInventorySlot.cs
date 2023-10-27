@@ -77,6 +77,7 @@ public class EquipInventorySlot : ItemSlot, IBeginDragHandler, IEndDragHandler, 
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (_equipItemData == null) return;
         if (_itemDataHolderPreview)
             Destroy(_itemDataHolderPreview.gameObject);
 

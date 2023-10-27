@@ -131,6 +131,7 @@ public class Inventory : MonoBehaviour
 
     private void DeleteItem(InventorySlot slot)
     {
+        slot.HideItemInfo();
         slot.EmptySlot();
         RefreshInventory();
     }
